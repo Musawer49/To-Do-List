@@ -7,10 +7,11 @@ while True:
 
     if user_input.lower() == "exit":
         break
+    print("Task added successfully!")
 
     task = {
         "task": user_input,
-        "completed": False
+        "status": False
     }
 
     tasks.append(task)
