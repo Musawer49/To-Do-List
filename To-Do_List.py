@@ -22,18 +22,32 @@ while True:
         })
         print("Task added successfully!")
     elif choice == 2:
-        for number, task in enumerate(tasks, start=1):
-            print(number, ".", task["task"], "-", task["status"])
+        if not tasks:
+            print("No Tasks Available!")
+        else:
+            print("\nYour Tasks:")
+            for number, task in enumerate(tasks, start=1):
+                print(number, ".", task["task"], "-", task["status"].capitalize())
     elif choice == 3:
         try:
             ask_num = int(input("Which task number you want to complete: "))
         except ValueError:
             print("Please enter a number")
             continue
+        if ask_num < 1 or ask_num > len(tasks):
+            print("Invalid number. Please enter a valid number.")
+            continue
         tasks[ask_num - 1]["status"] = "completed"
         print("Task marked as completed.")
     elif choice == 4:
-        ask_num = int(input("Which task number do you want to delete: "))
+        try:
+            ask_num = int(input("Which task number do you want to delete: "))
+        except ValueError:
+            print("Please enter a number")
+            continue
+        if ask_num < 1 or ask_num > len(tasks):
+            print("Invalid number. Please enter a valid number.")
+            continue
         del tasks[ask_num - 1]
         print("Task deleted successfully")
     elif choice == 5:
